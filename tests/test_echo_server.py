@@ -130,7 +130,7 @@ def test_echo_server_with_socket():
     
     # Проверяем статус
     assert "HTTP/1.1 418" in response_str
-    assert "Response Status: 418 I'm a teapot" in response_str
+    assert "Response Status: 418 I'm a Teapot" in response_str
     assert "X-Test-Header: test-value" in response_str
     assert "Request Method: GET" in response_str
     
