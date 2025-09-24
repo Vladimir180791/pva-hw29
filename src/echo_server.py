@@ -45,7 +45,7 @@ def run_server(host='127.0.0.1', port=5000):
                 client_address = ("UNKNOWN", "UNKNOWN")
                 response_body = f"Error parsing request: {e}"
                 
-                # ИСПРАВЛЕННАЯ ЧАСТЬ: правильное разделение заголовков и тела
+               
                 response_headers = [
                     f"HTTP/1.1 {status_code} {status_phrase}",
                     "Content-Type: text/plain; charset=utf-8",
@@ -57,7 +57,7 @@ def run_server(host='127.0.0.1', port=5000):
                 client_socket.close()
                 continue
 
-            # Формируем тело ответа
+            
             response_body_lines = [
                 f"Request Method: {method}",
                 f"Request Source: {client_address}",
@@ -71,7 +71,7 @@ def run_server(host='127.0.0.1', port=5000):
 
             response_body = "\n".join(response_body_lines)
 
-            # ИСПРАВЛЕННАЯ ЧАСТЬ: правильное формирование HTTP ответа
+            
             response_headers = [
                 f"HTTP/1.1 {status_code} {status_phrase}",
                 "Content-Type: text/plain; charset=utf-8",
@@ -79,10 +79,10 @@ def run_server(host='127.0.0.1', port=5000):
                 "Connection: close",
             ]
             
-            # Собираем полный ответ: заголовки + пустая строка + тело
+            
             response = "\r\n".join(response_headers) + "\r\n\r\n" + response_body
 
-            # Отправляем ответ клиенту
+            
             client_socket.sendall(response.encode('utf-8'))
             client_socket.close()
 

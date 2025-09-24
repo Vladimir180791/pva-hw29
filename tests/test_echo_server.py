@@ -5,7 +5,7 @@ import threading
 import time
 from urllib.parse import urlparse
 
-# Путь к модулю с сервером (может потребоваться изменение)
+
 import sys
 sys.path.insert(0, 'src')
 
@@ -14,12 +14,12 @@ from echo_server import run_server
 def test_echo_server():
     """Основной тест echo сервера"""
     
-    # Запускаем сервер в отдельном потоке
+    
     server_thread = threading.Thread(target=run_server, kwargs={'host': '127.0.0.1', 'port': 8888})
     server_thread.daemon = True
     server_thread.start()
     
-    # Даем серверу время на запуск
+    
     time.sleep(0.1)
     
     try:
@@ -146,20 +146,20 @@ def test_content_length():
     content_length = response.getheader('Content-Length')
     data = response.read()
     
-    # Проверяем, что Content-Length соответствует фактической длине тела
+    
     assert content_length is not None
     assert int(content_length) == len(data)
     
     conn.close()
 
 if __name__ == "__main__":
-    # Запускаем сервер для тестов
+    
     import threading
     server_thread = threading.Thread(target=run_server, kwargs={'host': '127.0.0.1', 'port': 8888})
     server_thread.daemon = True
     server_thread.start()
     
-    # Ждем немного для запуска сервера
+    
     time.sleep(0.5)
     
     try:
